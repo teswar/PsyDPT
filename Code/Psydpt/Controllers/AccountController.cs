@@ -12,24 +12,22 @@ using Psydpt.Models;
 using Psydpt.Data.Infrastructure;
 using Psydpt.Data;
 using Psydpt.Data.Entities;
+using Psydpt.Business.Infrastructure;
+using Psydpt.Data.Enums;
 
 namespace Psydpt.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : Core.BaseDataController
     {
-        public ICatalog Catalog  { get; private set; }
-
         public AccountController()
-            : this(new PsydptCatalog(new PsydptContext()))
-        {
+            : base()
+        { }
 
-        }
 
-        public AccountController(ICatalog catalog)
-        {
-            Catalog = catalog;
-        }
+        public AccountController(IPsydptServices dataServices)
+            : base(dataServices)
+        { }
 
         //public UserManager<ApplicationUser> UserManager { get; private set; }
 
@@ -51,7 +49,7 @@ namespace Psydpt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await  Catalog.UserManager.FindAsync(model.UserName, model.Password);
+                var user = await  Services.UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -85,16 +83,15 @@ namespace Psydpt.Controllers
             if (ModelState.IsValid)
             {
                 var user = new AppUser() { UserName = model.UserName };
-                var result = await Catalog.UserManager.CreateAsync(user, model.Password);
+                var result = await Services.UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded) { result = await Services.UserManager.AddToRoleAsync(user.Id, UserRole.Patient.ToString()); }
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = UserRole.Patient.ToString() });
                 }
-                else
-                {
-                    AddErrors(result);
-                }
+               
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -108,7 +105,7 @@ namespace Psydpt.Controllers
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
         {
             ManageMessageId? message = null;
-            IdentityResult result = await Catalog.UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            IdentityResult result = await Services.UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded)
             {
                 message = ManageMessageId.RemoveLoginSuccess;
@@ -148,7 +145,7 @@ namespace Psydpt.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await Catalog.UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    IdentityResult result = await Services.UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -170,7 +167,7 @@ namespace Psydpt.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await Catalog.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    IdentityResult result = await Services.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -209,7 +206,7 @@ namespace Psydpt.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var user = await Catalog.UserManager.FindAsync(loginInfo.Login);
+            var user = await Services.UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -243,7 +240,7 @@ namespace Psydpt.Controllers
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
-            var result = await Catalog.UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+            var result = await Services.UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             if (result.Succeeded)
             {
                 return RedirectToAction("Manage");
@@ -272,10 +269,10 @@ namespace Psydpt.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new AppUser() { UserName = model.UserName };
-                var result = await Catalog.UserManager.CreateAsync(user);
+                var result = await Services.UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await Catalog.UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await Services.UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
@@ -310,18 +307,13 @@ namespace Psydpt.Controllers
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
         {
-            var linkedAccounts =  Catalog.UserManager.GetLogins(User.Identity.GetUserId());
+            var linkedAccounts = Services.UserManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing &&  Catalog != null)
-            {
-                Catalog.Dispose();
-                Catalog = null;
-            }
             base.Dispose(disposing);
         }
 
@@ -340,7 +332,7 @@ namespace Psydpt.Controllers
         private async Task SignInAsync(AppUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await Catalog.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await Services.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
@@ -354,7 +346,7 @@ namespace Psydpt.Controllers
 
         private bool HasPassword()
         {
-            var user = Catalog.UserManager.FindById(User.Identity.GetUserId());
+            var user = Services.UserManager.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PasswordHash != null;

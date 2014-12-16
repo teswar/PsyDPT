@@ -30,5 +30,27 @@ namespace Psydpt.Controllers
 
             return View();
         }
+
+
+        [HttpGet]
+        public ActionResult Tokenize()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Tokenize(string data)
+        {
+            List<string> result = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                result = Psydpt.Business.Services.Tokenizer.Tokenize(data);
+            }
+
+            ViewBag.Result = result;
+            return View();
+        }
+
     }
 }

@@ -40,3 +40,12 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+
+/*Thiru Custom styles*/
+
+.patient-info-sidebar {
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: auto;
+}

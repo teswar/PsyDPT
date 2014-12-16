@@ -11,7 +11,7 @@ namespace Psydpt.Data.Infrastructure
     public class PsydptUnitOfWork: IUnitOfWork
     {
        protected readonly DbContext _context;
-       private DbContextTransaction _transaction;
+       //private DbContextTransaction _transaction;
        private bool _ownsConnection;
 
 
@@ -24,7 +24,7 @@ namespace Psydpt.Data.Infrastructure
         public PsydptUnitOfWork(DbContext context)
         { 
             _context = context;
-            _transaction = _context.Database.BeginTransaction();
+            //_transaction = _context.Database.BeginTransaction();
         }
 
 

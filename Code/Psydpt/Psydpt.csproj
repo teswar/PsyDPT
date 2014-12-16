@@ -167,8 +167,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistationcs.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Patient\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Patient\PatientAreaRegistation.cs" />
+    <Compile Include="Areas\Patient\ViewModels\PatientSigeCapsVM.cs" />
+    <Compile Include="Areas\Patient\ViewModels\PatientInfoVm.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\BaseController.cs" />
+    <Compile Include="Core\Contants.cs" />
+    <Compile Include="Core\Enums\Class1.cs" />
+    <Compile Include="Core\ViewModels\AjaxResponse.cs" />
+    <Compile Include="Core\ViewModels\DataResponse.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,18 +189,72 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\StandfordNlpTagger\Entities\README-Models.txt" />
+    <Content Include="Areas\Patient\Scripts\Home\ManageAccount.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootswatch.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-bidirectional-distsim.tagger" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-bidirectional-distsim.tagger.props" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-caseless-left3words-distsim.tagger" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-caseless-left3words-distsim.tagger.props" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-left3words-distsim.tagger" />
+    <Content Include="App_Data\StandfordNlpTagger\Entities\english-left3words-distsim.tagger.props" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Patient\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Patient\Views\Home\_PatientInfoSideBar.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\_PatientInfoPartial.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\ManageAccount.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\_PatientSigeCapsPartial.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\PredictDisorder.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootswatch.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -223,10 +288,9 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Tokenize.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -237,6 +301,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Psydpt.Business\Psydpt.Business.csproj">
+      <Project>{62b0372b-69c6-4143-a847-d63590bcdec5}</Project>
+      <Name>Psydpt.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Psydpt.Data\Psydpt.Data.csproj">
       <Project>{4957fdb0-22a7-4774-a6e2-6df9bcf43bbc}</Project>
       <Name>Psydpt.Data</Name>

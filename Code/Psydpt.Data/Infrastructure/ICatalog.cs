@@ -11,6 +11,9 @@ namespace Psydpt.Data.Infrastructure
     public interface ICatalog : IDisposable
     {
         IUnitOfWork UnitOfWork { get; }
-        UserManager<AppUser> UserManager { get; }
+
+        IBaseRepository<PatientInfo, string> PatientInfoRepository { get; }
+
+        IBaseRepository<PatientSigeCaps, string> PatientSigeCapsRepository { get; }
     }
 }

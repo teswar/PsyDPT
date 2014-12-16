@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Tokenize";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    if(ViewBag.Result == null){ ViewBag.Result = new List<string>(); }
+    var result = (List<string>)ViewBag.Result;    
+}
+
+<style>
+    .visible {
+        display:block;
+    }
+
+    .hide {
+    
+        display:none;
+    }
+</style>
+
+
+
+<h2>Tokenize</h2>
+
+
+<div>
+    <form method="post" action="Tokenize">
+        <div>
+            <textarea name="data" placeholder="Enter text here ..."></textarea>
+        </div>
+   
+        <input  type="submit" value="Submit"/>
+    </form>
+
+    <div class="@(result.Count < 1 ? "hide" :"")">
+        <h4>
+            Result
+        </h4>
+
+        <ul>
+            @foreach (var data in result)
+            {
+                <li>@data</li>
+            }
+        </ul>
+    </div>
+</div>

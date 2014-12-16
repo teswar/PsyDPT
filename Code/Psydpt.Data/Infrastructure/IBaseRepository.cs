@@ -8,7 +8,7 @@ namespace Psydpt.Data.Infrastructure
 {
     public interface IBaseRepository<TEntity, TKey>
         where TEntity : class
-        where TKey : class
+        //where TKey : class
     {
         void Create(TEntity entity);
         TEntity GetById(TKey id);

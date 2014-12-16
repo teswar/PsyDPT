@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "ManageAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-header">
+    <h2>Manage Account</h2>
+</div>
+
+
+<div class="bs-component">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#personalDetail">Personal Details</a></li>
+        <li><a data-toggle="tab" href="#diagnosisHistory">Diagnosis History</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="personalDetail" class="tab-pane fade active in">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h1>Personal Detail</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div id="personalInfoContainer">
+                @{
+                    Html.RenderAction("PatientInfoPartial", "Home", new { area = "Patient" });
+                }
+            </div>
+            <div id="patientSigeCapsContainer">
+                @{
+                    Html.RenderAction("PatientSigeCapPartial", "Home", new { area = "Patient" });
+                }
+            </div>
+        </div>
+        <div id="diagnosisHistory" class="tab-pane fade">
+            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        </div>
+    </div>
+</div>
+
+
+@section ManagedViewScripts{
+    <script type="text/javascript" src="~/Areas/Patient/Scripts/Home/ManageAccount.js"></script>
+}
+

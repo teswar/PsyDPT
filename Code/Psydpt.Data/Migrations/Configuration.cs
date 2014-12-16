@@ -2,7 +2,10 @@ namespace Psydpt.Data.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Psydpt.Data.Entities;
+    using Psydpt.Data.Enums;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -22,20 +25,46 @@ namespace Psydpt.Data.Migrations
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             // Adding Roles
-            if (!roleManager.RoleExists("Admin")) { roleManager.Create(new IdentityRole("Admin")); }
+            #region Roles
+
+            var roles = new List<IdentityRole>();
+            roles.Add(new IdentityRole(UserRole.Admin.ToString()));
+            roles.Add(new IdentityRole(UserRole.Patient.ToString()));
+   
+            foreach (var role in roles)
+            {
+                if (!roleManager.RoleExists(role.Name)) { roleManager.Create(role); }
+            }
+
+            #endregion
+
 
             // Adding Admin account
-            if (userManager.FindByEmail("admin@admin.com") == null)
+            #region Users
+
+            if (userManager.FindByEmail("admin@psydpt.com") == null)
             {
                 var adminUser = new Entities.AppUser()
                 {
-                    Email = "admin@admin.com",
+                    Email = "admin@psydpt.com",
                     UserName = "Admin"
-
                 };
                 userManager.Create(adminUser, "1qaz2wsx");
-                userManager.AddToRole(adminUser.Id, "Admin");
+                userManager.AddToRole(adminUser.Id, UserRole.Admin.ToString());
             }
+
+            if (userManager.FindByEmail("patient@psydpt.com") == null)
+            {
+                var adminUser = new Entities.AppUser()
+                {
+                    Email = "patient@psydpt.com",
+                    UserName = "Patient"
+                };
+                userManager.Create(adminUser, "1qaz2wsx");
+                userManager.AddToRole(adminUser.Id, UserRole.Patient.ToString());
+            }
+
+            #endregion
 
             context.SaveChanges();
         }

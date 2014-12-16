@@ -1,0 +1,130 @@
+﻿@using  Psydpt.Data.Enums;
+@model Psydpt.Areas.Patient.ViewModels.PatientSigeCapsVM
+@{
+        
+    var _variantSelection = new List<SelectListItem>(
+        Enum.GetValues(typeof(SigeCapVariantType)).Cast<SigeCapVariantType>().ToList()
+        .Select(m => new SelectListItem(){ Text = m.ToString(), Value = m.ToString()})
+        .ToList()); 
+        
+    var _booleanSelection = new List<SelectListItem>(
+        Enum.GetValues(typeof(SigeCapBooleanType)).Cast<SigeCapBooleanType>().ToList()
+        .Select(m => new SelectListItem(){ Text = m.ToString(), Value = m.ToString()})
+        .ToList()); 
+        
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well bs-component">
+
+            <form id="patientSigeCapsFrm" method="post" action="PatientSigeCapPartial" class="form-horizontal">
+                <fieldset>
+                    <legend>Sige Caps</legend>
+                    @Html.ValidationSummary(true)
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Sleepiness, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.Sleepiness, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Sleepiness)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Interest, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.Interest, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Interest)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Interest, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            <div class="radio">
+                                <label>
+                                    @Html.RadioButtonFor(m => m.GuiltyFeelings, SigeCapBooleanType.Yes, new { @class = "" })
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    @Html.RadioButtonFor(m => m.GuiltyFeelings, SigeCapBooleanType.No, new { @class = "" })
+                                    No
+                                </label>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Interest)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.EnergyLevel, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.EnergyLevel, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.EnergyLevel)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Concentration, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.Concentration, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Concentration)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Appetite, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.Appetite, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Appetite)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Agitation, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            @Html.DropDownListFor(m => m.Agitation, _variantSelection, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Agitation)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Interest, new { @class = "col-md-4 control-label" })
+                        <div class="col-lg-6 col-md-offset-2">
+                            <div class="radio">
+                                <label>
+                                    @Html.RadioButtonFor(m => m.SucidalThoughts, SigeCapBooleanType.Yes, new { @class = "" })
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    @Html.RadioButtonFor(m => m.SucidalThoughts, SigeCapBooleanType.No, new { @class = "" })
+                                    No
+                                </label>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Interest)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button class="btn btn-default">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+
