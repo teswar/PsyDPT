@@ -13,6 +13,7 @@ namespace Psydpt.Data.Entities
     public class Prediction: EntityBase
     {
         [Key]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public Guid DisorderId { get; set; }

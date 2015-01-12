@@ -7,13 +7,13 @@ namespace Psydpt.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Added_PK_Contraints : IMigrationMetadata
+    public sealed partial class ReBuilding : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_PK_Contraints));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ReBuilding));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501121223131_Added_PK_Contraints"; }
+            get { return "201501121659581_ReBuilding"; }
         }
         
         string IMigrationMetadata.Source

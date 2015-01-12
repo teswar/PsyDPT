@@ -76,7 +76,7 @@ namespace Psydpt.Data.Migrations
                     Name = "Aboulia",
                     Keywords = "loss, spontaneous, movement, reduce, drive, expression, behavior, slow, speech, response-time, social, interaction",
                     Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                    CreatedOn = DateTime.Now
+                    ExternalInfoUrl = "https://en.wikipedia.org/?hello"
                 });
 
             disorders.Add(new Disorder()
@@ -84,7 +84,7 @@ namespace Psydpt.Data.Migrations
                 Name = "Absence seizure / Epilepsy",
                 Keywords = "suddenly, unconscious, response, rolled, eyes",
                 Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                CreatedOn = DateTime.Now
+                ExternalInfoUrl = "https://en.wikipedia.org/?hello"
             });
 
             disorders.Add(new Disorder()
@@ -92,7 +92,7 @@ namespace Psydpt.Data.Migrations
                 Name = "Agoraphobia",
                 Keywords = "open, space, wide, panic, environment, crowd, public, society, place, separation, fear, scared",
                 Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                CreatedOn = DateTime.Now
+                ExternalInfoUrl = "https://en.wikipedia.org/?hello"
             });
 
             disorders.Add(new Disorder()
@@ -100,7 +100,7 @@ namespace Psydpt.Data.Migrations
                  Name = "Alzheimer's disease",
                  Keywords = "memory loss, spontaneous, movement, reduce, drive, expression, behavior, slow, speech, response-time, social, interaction",
                  Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                 CreatedOn = DateTime.Now
+                 ExternalInfoUrl = "https://en.wikipedia.org/?hello"
              });
 
             disorders.Add(new Disorder()
@@ -108,7 +108,7 @@ namespace Psydpt.Data.Migrations
                  Name = "Autism",
                  Keywords = "eat, food, restrict, weight, thin, habit, meals, fat, lack, appetite, loss, obsession, purging, vomiting, calories",
                  Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                 CreatedOn = DateTime.Now
+                 ExternalInfoUrl = "https://en.wikipedia.org/?hello"
              });
 
             disorders.Add(new Disorder()
@@ -116,7 +116,7 @@ namespace Psydpt.Data.Migrations
                 Name = "Asperger syndrome",
                 Keywords = "child, lack, social, interaction, communication, talk, repetitive, beahviour, lonely, ritual, self-injury, withdrawn, reserved",
                 Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                CreatedOn = DateTime.Now
+                ExternalInfoUrl = "https://en.wikipedia.org/?hello"
             });
 
             disorders.Add(new Disorder()
@@ -124,7 +124,7 @@ namespace Psydpt.Data.Migrations
                 Name = "Anorexia Nervosa",
                 Keywords = "lack, social, interaction, posture, eye-contact, repetitive, beahviour, abnormal, sleep, moves, flap, hands",
                 Description = "E.g: Recently my daughter has refused to eat food at all. She does not take any meals from home or outside. She has been frettng  a lot that she has gained weight even though she is very thin.",
-                CreatedOn = DateTime.Now
+                ExternalInfoUrl = "https://en.wikipedia.org/?hello"
             });
 
 

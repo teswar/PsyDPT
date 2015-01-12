@@ -16,5 +16,6 @@ namespace Psydpt.Data.Entities
 
         public virtual PatientInfo PatientInfo {get; set;}
         public virtual PatientSigeCaps PatientSigeCaps { get; set; }
+        public virtual ICollection<Prediction> Predictions { get; set; }
     }
 }

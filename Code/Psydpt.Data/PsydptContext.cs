@@ -45,6 +45,26 @@ namespace Psydpt.Data
                 .WillCascadeOnDelete(true);
 
 
+            modelBuilder.Entity<Prediction>()
+                .HasRequired(s => s.Patient)
+                .WithMany(s => s.Predictions)
+                .HasForeignKey(s => s.PatientId)
+                .WillCascadeOnDelete(true);
+
+
+            modelBuilder.Entity<Prediction>()
+                .HasRequired(s => s.Disorder)
+                .WithMany()
+                .Map(s => s.MapKey("DisorderId"))
+                .WillCascadeOnDelete(true);
+
+            //HasRequired(document => document.DocumentType)
+            //.WithMany()
+            //.Map(e => e.MapKey("DocumentTypeId"));
+            //Property(document => document.Title).HasColumnName("Title").IsRequired();
+            //ToTable("Documents");
+
+
             base.OnModelCreating(modelBuilder);
         }
 

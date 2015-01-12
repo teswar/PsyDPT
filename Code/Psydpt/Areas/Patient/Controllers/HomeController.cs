@@ -1,4 +1,5 @@
-﻿using Psydpt.Areas.Patient.ViewModels;
+﻿using Newtonsoft.Json;
+using Psydpt.Areas.Patient.ViewModels;
 using Psydpt.Business.Entities;
 using Psydpt.Business.Exceptions;
 using Psydpt.Business.Infrastructure;
@@ -149,6 +150,17 @@ namespace Psydpt.Areas.Patient.Controllers
 
                 result.Message = "Found matching disorder";
                 result.Data = predictions[0];
+
+                var user = Services.UserManager.FindByNameAsync(User.Identity.Name).Result;
+                var prediction = new Prediction()
+                {
+                     PatientId = user.Id,
+                     DisorderId = result.Data.Disorder.Id,
+                     Symptoms = model.Description
+                };
+
+                Services.PredictionService.SavePrediction(prediction);
+        
             }
             catch (Exception exp) 
             {
@@ -157,7 +169,7 @@ namespace Psydpt.Areas.Patient.Controllers
                 result.Log = exp;
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+           return Json(result, JsonRequestBehavior.AllowGet);
         }
 
 

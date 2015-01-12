@@ -117,6 +117,9 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0-alpha1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="stanford-postagger">
       <HintPath>..\packages\Stanford.NLP.POSTagger.3.4.0.0\lib\stanford-postagger.dll</HintPath>
     </Reference>
@@ -125,6 +128,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -146,17 +150,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\PsydptCatalog.cs" />
     <Compile Include="Infrastructure\PsydptUnitOfWork.cs" />
-    <Compile Include="Migrations\201412161126019_Initial.cs" />
-    <Compile Include="Migrations\201412161126019_Initial.Designer.cs">
-      <DependentUpon>201412161126019_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412161304573_Add_SigeCaps.cs" />
-    <Compile Include="Migrations\201412161304573_Add_SigeCaps.Designer.cs">
-      <DependentUpon>201412161304573_Add_SigeCaps.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501121223131_Added_PK_Contraints.cs" />
-    <Compile Include="Migrations\201501121223131_Added_PK_Contraints.Designer.cs">
-      <DependentUpon>201501121223131_Added_PK_Contraints.cs</DependentUpon>
+    <Compile Include="Migrations\201501121659581_ReBuilding.cs" />
+    <Compile Include="Migrations\201501121659581_ReBuilding.Designer.cs">
+      <DependentUpon>201501121659581_ReBuilding.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PsydptContext.cs" />
@@ -171,14 +167,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412161126019_Initial.resx">
-      <DependentUpon>201412161126019_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412161304573_Add_SigeCaps.resx">
-      <DependentUpon>201412161304573_Add_SigeCaps.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501121223131_Added_PK_Contraints.resx">
-      <DependentUpon>201501121223131_Added_PK_Contraints.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501121659581_ReBuilding.resx">
+      <DependentUpon>201501121659581_ReBuilding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

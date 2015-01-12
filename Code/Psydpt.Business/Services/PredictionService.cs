@@ -70,7 +70,36 @@ namespace Psydpt.Business.Services
 
         public Prediction SavePrediction(Prediction prediction)
         {
-            throw new NotImplementedException();
+            #region Validating [Thorwing Exception]
+
+            if (prediction == null) { throw new Exceptions.BusinessLogicException("Prediction can't be null"); }
+        
+            // Check if a patient entity with the id exists, else throw exception
+            var user = _userManager.FindById(prediction.PatientId);
+            if (user == null) { throw new Exceptions.BusinessLogicException("Unavailable to find matching patient record"); }
+
+            var disorder = _dataCatalog.DisordersRepo.GetById(prediction.DisorderId);
+            if (disorder == null) { throw new Exceptions.BusinessLogicException("Unavailable to find matching disorder record"); }
+
+            #endregion
+
+
+
+            var dbmodel = _dataCatalog.PredictionRepo.GetById(prediction.Id);
+            if (dbmodel == null)
+            {
+                dbmodel = prediction;
+                _dataCatalog.PredictionRepo.Create(dbmodel);
+            }
+            else
+            {
+                dbmodel.Symptoms = prediction.Symptoms;
+                dbmodel.DisorderId = prediction.DisorderId;
+                _dataCatalog.PredictionRepo.Update(dbmodel);
+            }
+
+            _dataCatalog.UnitOfWork.SaveChanges();
+            return dbmodel;
         }
     }
 

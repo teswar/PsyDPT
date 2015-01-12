@@ -5,7 +5,6 @@
         ? "/admin/home/index" 
         : "patient/home/index";
 }
-@*@Html.ActionLink("Psy DPT", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,6 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -50,8 +48,8 @@
                     {
 
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("About", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Index", "Home")</li>
                     }
                 </ul>
 
@@ -127,7 +125,7 @@
 
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - PSY ANALYSIS Application</p>
         </footer>
     </div>
 

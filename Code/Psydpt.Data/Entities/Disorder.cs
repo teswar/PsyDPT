@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Psydpt.Data.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Psydpt.Data.Entities
 {
@@ -21,6 +23,8 @@ namespace Psydpt.Data.Entities
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public string ExternalInfoUrl { get; set; }
 
         public string Keywords { get; set; }
 
@@ -42,6 +46,11 @@ namespace Psydpt.Data.Entities
                 Keywords = (value == null) ? null : string.Join(KEYWORDS_SPLITTES.ToCharArray()[0].ToString(), value.Where(m => m != null).Select(m => m.Trim()).ToList());
             }
         }
+
+    
+        //[JsonIgnore] 
+        //[IgnoreDataMember] 
+        //public virtual ICollection<Prediction> Predictions { get; set; }
 
     }
 }

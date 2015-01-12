@@ -83,7 +83,11 @@ function updatePrediction(data) {
 
     if (data.Status = RESPONSE_STATUS.SUCCESS) {
         var disorder = data.Data.Disorder;
-        var contentToUpdate = "<strong>"+ disorder.Name +"</strong>"+ disorder.Description +"<a class=\"alert-link\" href="+ "google.com" +">for more ...</a>"
+
+        var contentToUpdate = "<p><strong>" + disorder.Name + "</strong></p>"
+                                + "<p>" + disorder.Description
+                                + "<a class=\"alert-link\" href=" + disorder.ExternalInfoUrl + " target=\"_blank\"> more ...</a> </p>"
+
         PREDICTION_OUTPUT_ELEMENT_SELECTORMAP.description.html(contentToUpdate);
     }
 }
