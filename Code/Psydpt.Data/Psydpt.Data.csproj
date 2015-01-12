@@ -132,7 +132,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\PatientSigeCaps.cs" />
+    <Compile Include="Entities\PredictionSetting.cs" />
+    <Compile Include="Entities\Predictions.cs" />
+    <Compile Include="Entities\PredictionPuntuation.cs" />
+    <Compile Include="Entities\Disorder.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\PatientSigeCap.cs" />
     <Compile Include="Entities\PatientInfo.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Infrastructure\BaseRepository.cs" />
@@ -148,6 +153,10 @@
     <Compile Include="Migrations\201412161304573_Add_SigeCaps.cs" />
     <Compile Include="Migrations\201412161304573_Add_SigeCaps.Designer.cs">
       <DependentUpon>201412161304573_Add_SigeCaps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501121223131_Added_PK_Contraints.cs" />
+    <Compile Include="Migrations\201501121223131_Added_PK_Contraints.Designer.cs">
+      <DependentUpon>201501121223131_Added_PK_Contraints.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PsydptContext.cs" />
@@ -167,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412161304573_Add_SigeCaps.resx">
       <DependentUpon>201412161304573_Add_SigeCaps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501121223131_Added_PK_Contraints.resx">
+      <DependentUpon>201501121223131_Added_PK_Contraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

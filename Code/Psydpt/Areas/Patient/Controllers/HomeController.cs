@@ -1,8 +1,10 @@
 ﻿using Psydpt.Areas.Patient.ViewModels;
+using Psydpt.Business.Entities;
 using Psydpt.Business.Exceptions;
 using Psydpt.Business.Infrastructure;
 using Psydpt.Business.Services;
 using Psydpt.Core;
+using Psydpt.Core.ViewModels;
 using Psydpt.Data.Entities;
 using Psydpt.Data.Enums;
 using System;
@@ -128,15 +130,42 @@ namespace Psydpt.Areas.Patient.Controllers
 
 
 
-
+        [HttpGet]
         public ActionResult PredictDisorder()
         {
             return View();
         }
 
 
+        [HttpPost]
+        public ActionResult PredictDisorder(PredictionSymtoms model)
+        {
+            var result = new AjaxDataResponse<PerdictionMatch>();
+            
+            try
+            {
+                var predictions = Services.PredictionService.Predict(model.Description);
+                if (predictions == null || !predictions.Any()) { throw new InvalidOperationException("No matching disorder found."); }
+
+                result.Message = "Found matching disorder";
+                result.Data = predictions[0];
+            }
+            catch (Exception exp) 
+            {
+                result.Status = Core.Enums.ResponseStatus.Error;
+                result.Message = exp.Message;
+                result.Log = exp;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
 
+        [HttpPost]
+        public ActionResult SavePrediction()
+        {
+            return View();
+        }
 
 
 

@@ -13,6 +13,7 @@ using System.Web;
 using java.nio.file;
 using edu.stanford.nlp.tagger.maxent;
 using java.io;
+using Psydpt.Business.Entities;
 
 
 namespace Psydpt.Business.Services
@@ -28,17 +29,17 @@ namespace Psydpt.Business.Services
 
         //@"..\..\..\..\temp\stanford-postagger-2013-06-20\models\wsj-0-18-bidirectional-nodistsim.tagger";
 
-        public static List<string> Tokenize(string data)
+        public static Dictionary<string, List<Entities.Tag>> TagParaghraph(string content)
         {
-            List<string> result = new List<string>();
+            var result = new Dictionary<string, List<Entities.Tag>>();
 
-            using (java.io.StringReader jstrReader = new java.io.StringReader(data))
+            using (java.io.StringReader jstrReader = new java.io.StringReader(content))
             {
                 var tagger = new MaxentTagger(EngBidirDisTagger_EntityPath);
                 foreach (List sentence in MaxentTagger.tokenizeText(jstrReader).toArray())
                 {
                     var tSentence = tagger.tagSentence(sentence);
-                    result.Add(edu.stanford.nlp.ling.Sentence.listToString(tSentence, false));
+                   // result.Add(edu.stanford.nlp.ling.Sentence.listToString(tSentence, false));
                 }         
             }
 

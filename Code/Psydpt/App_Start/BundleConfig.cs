@@ -23,15 +23,13 @@ namespace Psydpt
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      //"~/Scripts/bootswatch.js",
+                      "~/Scripts/bootswatch.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      //"~/Content/bootswatch.min.css",
-                      "~/Content/site.css"
-                      
-                      ));
+                      "~/Content/bootswatch.min.css",
+                      "~/Content/site.css"));
         }
     }
 }

@@ -3,40 +3,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+
+</style>
+
 
 <div class="page-header">
-    <h2>Predict Disorder</h2>
+    <h1>Predict Disorder</h1>
 </div>
 
+
 <div class="row">
-
-    <div class="col-md-5">
-        <h4>Enter your symptoms ...</h4>
-        <form class="bs-component">
-            <div class="form-group">
-                <textarea id="textArea" rows="5" class="form-control" style="max-width:initial"></textarea>
-            </div>
-        </form>
-    </div>
-
-
-    <div class="col-md-1 col-md-offset-1">
-        <button class="btn btn-primary" type="submit" style="margin-top:80px">Predict</button>
-    </div>
-
-    <div class="col-md-4 col-md-push-1">
-        <h4>Disorder</h4>
-        <form class="bs-component">
-            <div class="form-group">
-                <textarea id="textArea" rows="5" class="form-control" style="max-width:initial"></textarea>
-            </div>
-        </form>
+    <div id="error-broadcast" class="bs-component">
+        <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
     </div>
 </div>
 
 
 <div class="row">
-    <div class="col-md-1 col-md-push-11">
-        <button style="padding-right: 22px;" type="submit" class="btn btn-primary">Save</button>
+
+    <!--Symptoms-->
+    <div class="col-md-6">
+
+        <div id="symptoms" class="bs-component">
+            <h2>Symptoms</h2>
+            <hr />
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2">Description</label>
+                    <div class="col-md-10">
+                        <textarea name="description" rows="3" class="form-control" placeholder="Describe your sympton"></textarea>
+                        <span class="help-block">Describe your sympton.</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button class="btn btn-default hidden">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Predict</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!--Prediction-->
+    <div class="col-md-5 col-md-offset-1">
+        <div class="bs-component">
+            <h2>Disorder</h2>
+            <hr />
+
+            <div class="bs-component">
+                <div id="prediction_output">
+
+                </div>
+                <div>
+                    <button class="btn btn-primary">Save Prediction</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>
+
+
+@section ManagedViewScripts{
+    <script type="text/javascript" src="~/Areas/Patient/Scripts/Home/PredictDisorder.js"></script>
+}
+

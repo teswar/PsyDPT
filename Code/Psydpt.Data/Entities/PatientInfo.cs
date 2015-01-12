@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Psydpt.Data.Entities
 {
     [Table("PatientInfos")]
-    public class PatientInfo
+    public class PatientInfo: EntityBase
     {
         public const double DAYS_IN_YEAR = 365;
 

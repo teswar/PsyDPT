@@ -15,20 +15,46 @@ namespace Psydpt.Data.Infrastructure
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly BaseRepository<PatientInfo, string> _patientInfoRepository;
         protected readonly BaseRepository<PatientSigeCaps, string> _patientSigeCapsRepository;
+        protected readonly BaseRepository<Disorder, Guid> _disorderRepository;
+        protected readonly BaseRepository<Prediction, Guid> _predictionRepository;
+        protected readonly BaseRepository<PredictionPuntuation, Guid> _predictionPuntuationRepository;
+        protected readonly BaseRepository<PredictionSetting, Guid> _predictionSettingRepository;
+
 
         public IUnitOfWork UnitOfWork
         {
             get { return _unitOfWork; }
         }
 
-        public IBaseRepository<PatientInfo, string> PatientInfoRepository
+        public IBaseRepository<PatientInfo, string> PatientInfoRepo
         {
             get { return _patientInfoRepository; }
         }
 
-        public IBaseRepository<PatientSigeCaps, string> PatientSigeCapsRepository
+        public IBaseRepository<PatientSigeCaps, string> PatientSigeCapsRepo
         {
             get { return _patientSigeCapsRepository; }
+        }
+
+
+        public IBaseRepository<Disorder, Guid> DisordersRepo
+        {
+            get { return _disorderRepository; }
+        }
+
+        public IBaseRepository<Prediction, Guid> PredictionRepo
+        {
+            get { return _predictionRepository; }
+        }
+        
+        public IBaseRepository<PredictionPuntuation, Guid> PredictionPuntuationRepo
+        {
+            get { return _predictionPuntuationRepository; }
+        }
+
+        public IBaseRepository<PredictionSetting, Guid> PredictionSettingRepo
+        {
+            get { return _predictionSettingRepository; }
         }
 
 
@@ -37,6 +63,10 @@ namespace Psydpt.Data.Infrastructure
             _unitOfWork = new PsydptUnitOfWork(context);
             _patientInfoRepository = new BaseRepository<PatientInfo, string>(_unitOfWork);
             _patientSigeCapsRepository = new BaseRepository<PatientSigeCaps, string>(_unitOfWork);
+            _disorderRepository = new BaseRepository<Disorder, Guid>(_unitOfWork);
+            _predictionRepository = new BaseRepository<Prediction, Guid>(_unitOfWork);
+            _predictionPuntuationRepository = new BaseRepository<PredictionPuntuation, Guid>(_unitOfWork);
+            _predictionSettingRepository = new BaseRepository<PredictionSetting, Guid>(_unitOfWork);
         }
 
 
@@ -50,6 +80,10 @@ namespace Psydpt.Data.Infrastructure
 
 
 
-      
+
+
+
+
+
     }
 }

@@ -25,7 +25,7 @@ namespace Psydpt.Business.Services
         public PatientInfo GetPatientInfo(string userId)
         {
             if (userId == null) { throw new Exceptions.BusinessLogicException("Invalid userId"); }
-            return  DataCatalog.PatientInfoRepository.GetById(userId);
+            return  _dataCatalog.PatientInfoRepo.GetById(userId);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Psydpt.Business.Services
             if (patientInfoDbmodel == null) 
             {
                 patientInfoDbmodel = patientInfo;
-                DataCatalog.PatientInfoRepository.Create(patientInfoDbmodel); 
+                _dataCatalog.PatientInfoRepo.Create(patientInfoDbmodel); 
             }
             else 
             {
@@ -66,7 +66,7 @@ namespace Psydpt.Business.Services
                 patientInfoDbmodel.HeightInCm = patientInfo.HeightInCm;
             }
 
-            DataCatalog.UnitOfWork.SaveChanges();
+            _dataCatalog.UnitOfWork.SaveChanges();
             return patientInfoDbmodel;
         }
     }

@@ -131,17 +131,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\TaggedSentence.cs" />
     <Compile Include="Exceptions\ServiceBaseException.cs" />
     <Compile Include="Exceptions\BusinessLogicException.cs" />
     <Compile Include="Infrastructure\IPatientSigeCapsService.cs" />
     <Compile Include="Infrastructure\IPatientService.cs" />
+    <Compile Include="Infrastructure\IPredictionService.cs" />
     <Compile Include="Infrastructure\IPsydptServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsydptServices.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\PredictionService.cs" />
     <Compile Include="Services\PatientSigeCapsService.cs" />
     <Compile Include="Services\PatientService.cs" />
     <Compile Include="Services\Tokenizer.cs" />
+    <Compile Include="Utility\Tagger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

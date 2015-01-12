@@ -25,7 +25,7 @@ namespace Psydpt.Business.Services
         public PatientSigeCaps GetPatientSigeCaps(string userId)
         {
             if (userId == null) { throw new Exceptions.BusinessLogicException("Invalid userId"); }
-            return DataCatalog.PatientSigeCapsRepository.GetById(userId);
+            return _dataCatalog.PatientSigeCapsRepo.GetById(userId);
         }
 
 
@@ -47,7 +47,7 @@ namespace Psydpt.Business.Services
             if (dbmodel == null)
             {
                 dbmodel = patientSigeCaps;
-                DataCatalog.PatientSigeCapsRepository.Create(dbmodel);
+                _dataCatalog.PatientSigeCapsRepo.Create(dbmodel);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace Psydpt.Business.Services
                 dbmodel.SucidalThoughts = patientSigeCaps.SucidalThoughts;
             }
 
-            DataCatalog.UnitOfWork.SaveChanges();
+            _dataCatalog.UnitOfWork.SaveChanges();
             return dbmodel;
         }
     }

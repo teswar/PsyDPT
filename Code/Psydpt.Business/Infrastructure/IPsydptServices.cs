@@ -15,5 +15,7 @@ namespace Psydpt.Business.Infrastructure
         IPatientService PatientService { get; }
 
         IPatientSigeCapsService PatientSigeCapsService { get; }
+
+        IPredictionService PredictionService { get; }
     }
 }

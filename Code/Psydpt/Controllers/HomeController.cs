@@ -43,10 +43,10 @@ namespace Psydpt.Controllers
         {
             List<string> result = new List<string>();
 
-            if (!string.IsNullOrWhiteSpace(data))
-            {
-                result = Psydpt.Business.Services.Tokenizer.Tokenize(data);
-            }
+            //if (!string.IsNullOrWhiteSpace(data))
+            //{
+            //    result = Psydpt.Business.Services.Tokenizer.Tokenize(data);
+            //}
 
             ViewBag.Result = result;
             return View();

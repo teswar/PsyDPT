@@ -12,8 +12,11 @@ namespace Psydpt.Data.Infrastructure
     {
         IUnitOfWork UnitOfWork { get; }
 
-        IBaseRepository<PatientInfo, string> PatientInfoRepository { get; }
-
-        IBaseRepository<PatientSigeCaps, string> PatientSigeCapsRepository { get; }
+        IBaseRepository<PatientInfo, string> PatientInfoRepo { get; }
+        IBaseRepository<PatientSigeCaps, string> PatientSigeCapsRepo { get; }
+        IBaseRepository<Disorder, Guid> DisordersRepo { get; }
+        IBaseRepository<Prediction, Guid> PredictionRepo { get; }
+        IBaseRepository<PredictionPuntuation, Guid> PredictionPuntuationRepo { get; }
+        IBaseRepository<PredictionSetting, Guid> PredictionSettingRepo { get; }
     }
 }

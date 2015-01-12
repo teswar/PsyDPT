@@ -22,6 +22,10 @@ namespace Psydpt.Data
 
         public DbSet<PatientInfo> PatientInfos { get; set; }
         public DbSet<PatientSigeCaps> PatientSigeCaps { get; set; }
+        public DbSet<Disorder> Disorders { get; set; }
+        public DbSet<Prediction> Predictions { get; set; }
+        public DbSet<PredictionPuntuation> PredictionPuntuations { get; set; }
+        public DbSet<PredictionSetting> PredictionSettings { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -10,8 +10,10 @@ namespace Psydpt.Data.Infrastructure
         where TEntity : class
         //where TKey : class
     {
-        void Create(TEntity entity);
+
         TEntity GetById(TKey id);
+        IEnumerable<TEntity> Get();
+        void Create(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
     }

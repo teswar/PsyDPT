@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Psydpt.Data.Entities
 {
     [Table("PatientSigeCaps")]
-    public class PatientSigeCaps
+    public class PatientSigeCaps: EntityBase
     {
         [Key]
         public string PatientSigeCapId { get; set; }

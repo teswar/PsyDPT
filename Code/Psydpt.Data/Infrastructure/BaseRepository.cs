@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Psydpt.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Psydpt.Data.Infrastructure
 {
     public class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey> 
-        where TEntity: class
+        where TEntity: EntityBase
         //where TKey: class
     {
 
@@ -27,9 +29,16 @@ namespace Psydpt.Data.Infrastructure
         }
 
 
+
+        public IEnumerable<TEntity> Get()
+        {
+            return _unitOfWork.Context.Set<TEntity>();
+        }
+
         public void Create(TEntity entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
+            if (entity.CreatedOn == null) { entity.CreatedOn = DateTime.Now; }
             _unitOfWork.Context.Set<TEntity>().Add(entity);
         }
 
@@ -37,6 +46,7 @@ namespace Psydpt.Data.Infrastructure
         public void Update(TEntity entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
+            entity.UpdatedOn = DateTime.Now;
             _unitOfWork.Context.Set<TEntity>().Attach(entity);
             _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
         }
@@ -48,6 +58,7 @@ namespace Psydpt.Data.Infrastructure
             _unitOfWork.Context.Set<TEntity>().Attach(entity);
             _unitOfWork.Context.Set<TEntity>().Remove(entity);
         }
+
 
     }
 }

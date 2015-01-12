@@ -18,6 +18,7 @@ namespace Psydpt.Business
         protected UserManager<AppUser> _userManager;
         protected IPatientService _patientService;
         protected IPatientSigeCapsService _patientSigeCapsService;
+        protected IPredictionService _predictionService;
 
         public UserManager<AppUser> UserManager
         {
@@ -30,11 +31,16 @@ namespace Psydpt.Business
             get { return _patientService; }
         }
 
-
-
+        
         public IPatientSigeCapsService PatientSigeCapsService
         {
             get { return _patientSigeCapsService; }
+        }
+        
+
+        public IPredictionService PredictionService
+        {
+            get { return _predictionService; }
         }
 
 
@@ -44,7 +50,9 @@ namespace Psydpt.Business
             _userManager = new UserManager<AppUser>(new UserStore<AppUser>(dbContext));
             _patientService = new Services.PatientService(_dataCatalog, ref _userManager);
             _patientSigeCapsService = new Services.PatientSigeCapsService(_dataCatalog, ref _userManager);
+            _predictionService = new Services.PredictionService(_dataCatalog, ref _userManager);
         }
+
 
 
     }

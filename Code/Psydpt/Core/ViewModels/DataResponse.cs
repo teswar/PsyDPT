@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Psydpt.Core.ViewModels
 {
-    public class DataResponse<T>
+    public class AjaxDataResponse<T>
     {
         public T Data {get; set;}
         public ResponseStatus Status{get; set;}
@@ -14,8 +14,8 @@ namespace Psydpt.Core.ViewModels
         public Exception Log { get; set; }
 
 
-
-        public DataResponse(T data, ResponseStatus status, string message, Exception log)
+       
+        public AjaxDataResponse(T data, ResponseStatus status, string message, Exception log)
         {
             this.Data = data;
             this.Status = status;
@@ -23,7 +23,7 @@ namespace Psydpt.Core.ViewModels
             this.Log = log;
         }
 
-        public DataResponse(ResponseStatus status = ResponseStatus.Success)
+        public AjaxDataResponse(ResponseStatus status = ResponseStatus.Success)
             :this(default(T), status, "", null)
         { }
 

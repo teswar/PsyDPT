@@ -12,13 +12,13 @@ namespace Psydpt.Business.Services
 {
     public abstract class BaseService 
     {
-        protected readonly ICatalog DataCatalog;
+        protected readonly ICatalog _dataCatalog;
 
         public BaseService(ICatalog dataCatalog)
         {
             if (dataCatalog == null) { throw new ArgumentNullException("unitOfWork", "Cant initialize service with invalid UnifOfWork"); }
 
-            DataCatalog = dataCatalog;
+            _dataCatalog = dataCatalog;
         }
 
     }
