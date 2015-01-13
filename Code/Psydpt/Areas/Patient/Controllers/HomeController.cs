@@ -66,7 +66,7 @@ namespace Psydpt.Areas.Patient.Controllers
         {
             var user = Services.UserManager.FindByNameAsync(User.Identity.Name).Result;
             var model = new PatientInfoVM(user, Services.PatientService.GetPatientInfo(user.Id));
-            return View("_PatientInfoPartial", model);
+            return PartialView("_PatientInfoPartial", model);
         }
 
           
@@ -97,7 +97,7 @@ namespace Psydpt.Areas.Patient.Controllers
             }
 
 
-            return View("_PatientInfoPartial", viewmodel);
+            return PartialView("_PatientInfoPartial", viewmodel);
         }
 
 
@@ -106,7 +106,7 @@ namespace Psydpt.Areas.Patient.Controllers
         {
             var user = Services.UserManager.FindByNameAsync(User.Identity.Name).Result;
             var model = new PatientSigeCapsVM(Services.PatientSigeCapsService.GetPatientSigeCaps(user.Id));
-            return View("_PatientSigeCapsPartial", model);
+            return PartialView("_PatientSigeCapsPartial", model);
         }
 
 
@@ -132,7 +132,7 @@ namespace Psydpt.Areas.Patient.Controllers
             }
 
 
-            return View("_PatientSigeCapsPartial", viewmodel);
+            return PartialView("_PatientSigeCapsPartial", viewmodel);
         }
 
 
