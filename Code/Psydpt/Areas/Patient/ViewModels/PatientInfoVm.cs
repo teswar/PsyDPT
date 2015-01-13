@@ -10,6 +10,15 @@ namespace Psydpt.Areas.Patient.ViewModels
     {
         public string Name { get; set; }
 
+        public string DateOfBirthStr
+        {
+            get { return (DateofBirth <= DateTime.MinValue ? DateTime.Now : DateofBirth).ToString("MM-dd-yyyy"); }
+            set
+            {
+                DateofBirth = DateTime.ParseExact(value,"MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
+        }
+
         public PatientInfoVM()
             :this(null, null)
         { }

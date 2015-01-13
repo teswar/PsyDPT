@@ -43,9 +43,9 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Date of Birth</label>
                         <div class="col-lg-6 col-md-offset-2">
-                            <input type="text" name="DateofBirth" id="DateofBirth" value="@dobStr" class="form-control datepicker-control" placeholder="Date of Birth" />
+                            @*<input type="text" name="DateofBirth" id="DateofBirth" value="@dobStr" class="form-control datepicker-control" placeholder="Date of Birth" />*@
                             
-                            @*@Html.TextBoxFor(m => m.DateofBirth, new { @type = "text", @class = "form-control datepicker-control", @placeholder = "Date of Birth" })*@
+                            @Html.TextBoxFor(m => m.DateOfBirthStr, new { @type = "text", @class = "form-control datepicker-control", @placeholder = "Date of Birth" })
                             @Html.ValidationMessageFor(m => m.DateofBirth)
                         </div>
                     </div>
