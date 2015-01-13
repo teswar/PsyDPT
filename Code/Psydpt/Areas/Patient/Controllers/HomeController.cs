@@ -77,10 +77,16 @@ namespace Psydpt.Areas.Patient.Controllers
             {
                 try
                 {
-                    var model = viewmodel.GetDbModel();
-                    model.PatientInfoId = Services.UserManager.FindByNameAsync(User.Identity.Name).Result.Id;
-                    model = Services.PatientService.SavePatientInfo(model);
-                    if (model == null) { throw new InvalidOperationException("Unexpected error occured while saving patient information."); }
+                    var user = Services.UserManager.FindByNameAsync(User.Identity.Name).Result;
+                    if (user == null) { throw new InvalidOperationException("Unexpected error occured while saving patient information."); }
+                    user.Name = viewmodel.Name;
+
+                    var pateintinfo = viewmodel.GetDbModel();
+                    pateintinfo.PatientInfoId = user.Id;
+                    pateintinfo = Services.PatientService.SavePatientInfo(pateintinfo);
+                    if (pateintinfo == null) { throw new InvalidOperationException("Unexpected error occured while saving patient information."); }
+
+                    viewmodel = new PatientInfoVM(user, pateintinfo);
                 }
                 catch (Exception exp)
                 {
@@ -115,6 +121,7 @@ namespace Psydpt.Areas.Patient.Controllers
                     model.PatientSigeCapId = Services.UserManager.FindByNameAsync(User.Identity.Name).Result.Id;
                     model = Services.PatientSigeCapsService.SavePatientSigeCaps(model);
                     if (model == null) { throw new InvalidOperationException("Unexpected error occured while saving patient sigecap information."); }
+                    viewmodel = new PatientSigeCapsVM(model);
                 }
                 catch (Exception exp)
                 {
@@ -129,6 +136,18 @@ namespace Psydpt.Areas.Patient.Controllers
         }
 
 
+
+        [HttpGet]
+        public ActionResult DiaganosisHistoryPartial()
+        {
+            var user = Services.UserManager.FindByNameAsync(User.Identity.Name).Result;
+            var result = Services.PredictionService.GetPredictions(user);
+            var model = (from p in result
+                         group p by p.CreatedOn into g
+                         select new {Header = g.Key, Body = g.ToList<Prediction>()}).ToDictionary(m => m.Header, m => m.Body);
+
+            return View("_PatientSigeCapsPartial", model);
+        }
 
 
         [HttpGet]
@@ -166,7 +185,7 @@ namespace Psydpt.Areas.Patient.Controllers
             {
                 result.Status = Core.Enums.ResponseStatus.Error;
                 result.Message = exp.Message;
-                result.Log = exp;
+                //result.Log = exp;
             }
 
            return Json(result, JsonRequestBehavior.AllowGet);

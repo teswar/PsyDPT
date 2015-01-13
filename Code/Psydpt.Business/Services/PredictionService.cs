@@ -9,8 +9,6 @@ using Psydpt.Business.Infrastructure;
 using Psydpt.Data.Infrastructure;
 using Microsoft.AspNet.Identity;
 using System.Web;
-using edu.stanford.nlp.tagger.maxent;
-using com.sun.tools.javac.util;
 using System.Text.RegularExpressions;
 using Psydpt.Business.Entities;
 using Psydpt.Business.Exceptions;
@@ -60,12 +58,23 @@ namespace Psydpt.Business.Services
 
         public IEnumerable<Prediction> GetPrediction()
         {
-            throw new NotImplementedException();
+            return (from p in _dataCatalog.PredictionRepo.Get()
+                    join d in _dataCatalog.DisordersRepo.Get() on new { x = p.DisorderId } equals new { x = d.Id }
+                    select new Prediction()
+                    {
+                        Id = p.Id,
+                        DisorderId = p.DisorderId,
+                        PatientId = p.PatientId,
+                        Symptoms = p.Symptoms,
+                        CreatedOn = p.CreatedOn,
+                        UpdatedOn = p.UpdatedOn,
+                        Disorder = d
+                    }).ToList();
         }
 
         public IEnumerable<Prediction> GetPredictions(AppUser patient)
         {
-            throw new NotImplementedException();
+            return GetPrediction().Where(m => m.PatientId == patient.Id);
         }
 
         public Prediction SavePrediction(Prediction prediction)

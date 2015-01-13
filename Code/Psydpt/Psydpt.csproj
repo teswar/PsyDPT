@@ -229,10 +229,12 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\StandfordNlpTagger\Entities\english-bidirectional-distsim.tagger" />
@@ -250,6 +252,7 @@
     <Content Include="Areas\Patient\Views\Home\ManageAccount.cshtml" />
     <Content Include="Areas\Patient\Views\Home\_PatientSigeCapsPartial.cshtml" />
     <Content Include="Areas\Patient\Views\Home\PredictDisorder.cshtml" />
+    <Content Include="Areas\Patient\Views\Home\_DiaganosisHistory.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootswatch.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

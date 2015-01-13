@@ -18,6 +18,7 @@ function OnPageload() {
         var predictionData = getPredictionInput();
         if (!predictionData.Validate()) { return; }
         moveToStatePredicting();
+        hideError();
 
         $.ajax({
             type: 'POST',
@@ -31,6 +32,7 @@ function OnPageload() {
             error: function (error) {
                 console.log("error!" + error);
                 moveToStateNormal();
+                showError("Unexpected error occured");
             }
         });
     });
@@ -81,7 +83,7 @@ function moveToStateNormal() {
 
 function updatePrediction(data) {
 
-    if (data.Status = RESPONSE_STATUS.SUCCESS) {
+    if (data.Status == RESPONSE_STATUS.SUCCESS) {
         var disorder = data.Data.Disorder;
 
         var contentToUpdate = "<p><strong>" + disorder.Name + "</strong></p>"
@@ -89,9 +91,33 @@ function updatePrediction(data) {
                                 + "<a class=\"alert-link\" href=" + disorder.ExternalInfoUrl + " target=\"_blank\"> more ...</a> </p>"
 
         PREDICTION_OUTPUT_ELEMENT_SELECTORMAP.description.html(contentToUpdate);
+        return;
     }
+
+    showError(data.Message ? data.Message : "Perdiction failed. Unexpected error occured.");
 }
 
+
+function showError(message) {
+
+    if (!message) { return; }
+    var errorCompSelector = $("#error_broadcast");
+    if(!errorCompSelector){return;}
+
+    var content =  "<div class=\"alert alert-dismissable alert-danger\">"
+        + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>"
+             +"<h4>Error!</h4>"
+             +"<p>"+ message +"</p>"
+     +"</div>";
+
+    errorCompSelector.html(content);
+}
+
+function hideError() {
+    var errorCompSelector = $("#error_broadcast");
+    if(!errorCompSelector){return;}
+    errorCompSelector.html("");
+}
 
 
 function AjaxDataResponse() {

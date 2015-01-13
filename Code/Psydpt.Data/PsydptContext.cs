@@ -16,7 +16,7 @@ namespace Psydpt.Data
             : base("PsydptConnection")
         {
             //AutomaticMigrationsEnabled = false;
-            //Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
 

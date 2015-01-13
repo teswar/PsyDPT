@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Interest, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Guilty Feelings</label>
                         <div class="col-lg-6 col-md-offset-2">
                             <div class="radio">
                                 <label>
@@ -61,7 +61,7 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.EnergyLevel, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Energy Level</label>
                         <div class="col-lg-6 col-md-offset-2">
                             @Html.DropDownListFor(m => m.EnergyLevel, _variantSelection, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.EnergyLevel)
@@ -94,7 +94,7 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Interest, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Sucidal Thoughts</label>
                         <div class="col-lg-6 col-md-offset-2">
                             <div class="radio">
                                 <label>

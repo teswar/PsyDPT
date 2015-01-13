@@ -123,6 +123,7 @@ namespace Psydpt.Business.Entities
         {
             PerdictionMatch result = new PerdictionMatch() { Disorder = disorder };
             var pattern = string.Format("({0})", string.Join("|", disorder.KeywordCollection));
+            pattern = Regex.Replace(pattern, "\\s+", "|", RegexOptions.Multiline);
             var input = string.Join(", ", taggedPara.Tags().Select(m => m.Phrase));
             MatchCollection matches = Regex.Matches(input, pattern, RegexOptions.Multiline | RegexOptions.IgnoreCase);
             if (matches != null) 

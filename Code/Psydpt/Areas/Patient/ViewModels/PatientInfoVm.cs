@@ -24,6 +24,8 @@ namespace Psydpt.Areas.Patient.ViewModels
             this.MatialStatus = patientInfoEntity.MatialStatus;
             this.WeightInKg = patientInfoEntity.WeightInKg;
             this.PatientInfoId = patientInfoEntity.PatientInfoId;
+            this.NumberOfChildren = patientInfoEntity.NumberOfChildren;
+            this.DescriptionAboutSelf = patientInfoEntity.DescriptionAboutSelf;
 
             if (userEntity == null) { return; }
             this.Name = userEntity.Name;
@@ -40,7 +42,9 @@ namespace Psydpt.Areas.Patient.ViewModels
                 HeightInCm = this.HeightInCm,
                 MatialStatus = this.MatialStatus,
                 WeightInKg = this.WeightInKg,
-                PatientInfoId = this.PatientInfoId
+                PatientInfoId = this.PatientInfoId,
+                DescriptionAboutSelf = this.DescriptionAboutSelf,
+                NumberOfChildren = this.NumberOfChildren               
             };
         }
 

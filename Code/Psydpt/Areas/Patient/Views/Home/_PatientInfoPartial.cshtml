@@ -29,23 +29,29 @@
                     @Html.ValidationSummary(true)
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Name</label>
                         <div class="col-lg-6 col-md-offset-2">
                             @Html.TextBoxFor(m => m.Name, new { @type = "text", @class = "form-control", @placeholder = "Name" })
                             @Html.ValidationMessageFor(m => m.Name)
                         </div>
                     </div>
 
+                    @{
+                        var dobStr = (Model.DateofBirth < DateTime.MinValue ? DateTime.Now : Model.DateofBirth).ToString("mm-dd-yyyy");
+                    }
+
                     <div class="form-group">
-                        @Html.LabelFor(m => m.DateofBirth, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Date of Birth</label>
                         <div class="col-lg-6 col-md-offset-2">
-                            @Html.TextBoxFor(m => m.DateofBirth, new { @type = "text", @class = "form-control datepicker-control", @placeholder = "Name" })
+                            <input type="text" name="DateofBirth" id="DateofBirth" value="@dobStr" class="form-control datepicker-control" placeholder="Date of Birth" />
+                            
+                            @*@Html.TextBoxFor(m => m.DateofBirth, new { @type = "text", @class = "form-control datepicker-control", @placeholder = "Date of Birth" })*@
                             @Html.ValidationMessageFor(m => m.DateofBirth)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Gender</label>
                         <div class="col-lg-6 col-md-offset-2">
                             @Html.DropDownListFor(m => m.Gender, _genderSelection, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Gender)
@@ -53,7 +59,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.BloodType, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Blood Type</label>
                         <div class="col-lg-6 col-md-offset-2">
                             @Html.DropDownListFor(m => m.BloodType, _bloodGroupSelection, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.BloodType)
@@ -61,7 +67,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.MatialStatus, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Matial Status</label>
                         <div class="col-lg-6 col-md-offset-2">
                             @Html.DropDownListFor(m => m.MatialStatus, _matialStatusSelection, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.MatialStatus)
@@ -69,17 +75,17 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.NumberOfChildren, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">Children</label>
                         <div class="col-lg-6 col-md-offset-2">
-                            @Html.TextBoxFor(m => m.NumberOfChildren, new { @type = "text", @class = "form-control", @placeholder = "Name" })
+                            @Html.TextBoxFor(m => m.NumberOfChildren, new { @type = "text", @class = "form-control", @placeholder = "Number of Children" })
                             @Html.ValidationMessageFor(m => m.NumberOfChildren)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.DescriptionAboutSelf, new { @class = "col-md-4 control-label" })
+                        <label class="col-md-4 control-label">About Self</label>
                         <div class="col-lg-6 col-md-offset-2">
-                            @Html.TextAreaFor(m => m.DescriptionAboutSelf, new { @type = "text", @class = "form-control", @placeholder = "Name" })
+                            @Html.TextAreaFor(m => m.DescriptionAboutSelf, new { @type = "text", @class = "form-control", @placeholder = "Describe about yourself" })
                             @Html.ValidationMessageFor(m => m.DescriptionAboutSelf)
                         </div>
                     </div>

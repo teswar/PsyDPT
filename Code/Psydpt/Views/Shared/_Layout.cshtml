@@ -44,21 +44,21 @@
                                     <li>@Html.ActionLink("User Account", "ManageAccount", "Home", new { area = "Patient" }, null)</li>
                         }
                     }
-                    else
+                    @*else
                     {
 
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "Index", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Index", "Home")</li>
-                    }
+                    }*@
                 </ul>
 
                 <!--Search [LEFT]-->
-                <ul class="nav navbar-nav navbar-left">
+                @*<ul class="nav navbar-nav navbar-left">
                     <li>
                         <input type="text" placeholder="Search" class="form-control col-lg-8">
                     </li>
-                </ul>
+                </ul>*@
 
                 <!--Login partial [RIGHT]-->
                 @Html.Partial("_LoginPartial")

@@ -43,5 +43,6 @@ namespace Psydpt.Data.Entities
 
         [ForeignKey("PatientInfoId")]
         public virtual AppUser UserPatient {get; set;}
+
     }
 }
